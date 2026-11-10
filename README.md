@@ -1,6 +1,6 @@
 # Rivvo
 
-![appLogo](client\public\logo.svg)
+![appLogo](client/public/logo.svg)
 
 > **Connect. Share. Live.** — A full-stack social platform built with the MERN stack.
 
