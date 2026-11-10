@@ -1,0 +1,215 @@
+D:\Projects\MERN Projects\rivvo
+├── client
+|  ├── index.html
+|  ├── package.json
+|  ├── public
+|  |  ├── brand
+|  |  |  ├── app-icon.svg
+|  |  |  ├── logo-dark.svg
+|  |  |  ├── logo-gradient.svg
+|  |  |  └── logo-light.svg
+|  |  ├── favicon.ico
+|  |  ├── favicon.svg
+|  |  ├── images
+|  |  └── logo.svg
+|  ├── src
+|  |  ├── App.jsx
+|  |  ├── assets
+|  |  |  ├── fonts
+|  |  |  ├── icons
+|  |  |  └── images
+|  |  ├── components
+|  |  |  ├── chat
+|  |  |  |  ├── ChatList.jsx
+|  |  |  |  ├── ChatWindow.jsx
+|  |  |  |  ├── Message.jsx
+|  |  |  |  ├── MessageButton.jsx
+|  |  |  |  ├── MessageInput.jsx
+|  |  |  |  ├── NewMessageModal.jsx
+|  |  |  |  └── TypingIndicator.jsx
+|  |  |  ├── common
+|  |  |  |  ├── Avatar.jsx
+|  |  |  |  ├── Button.jsx
+|  |  |  |  ├── ConfirmModal.jsx
+|  |  |  |  ├── LanguageSwitcher.jsx
+|  |  |  |  ├── Modal.jsx
+|  |  |  |  ├── Skeleton.jsx
+|  |  |  |  └── Spinner.jsx
+|  |  |  ├── explore
+|  |  |  |  ├── ExploreGrid.jsx
+|  |  |  |  ├── ExploreTile.jsx
+|  |  |  |  ├── PeopleResults.jsx
+|  |  |  |  ├── RecentSearches.jsx
+|  |  |  |  └── TrendingTags.jsx
+|  |  |  ├── layout
+|  |  |  |  ├── AppLayout.jsx
+|  |  |  |  ├── MobileNav.jsx
+|  |  |  |  ├── Navbar.jsx
+|  |  |  |  ├── RealtimeListener.jsx
+|  |  |  |  └── Sidebar.jsx
+|  |  |  ├── notifications
+|  |  |  |  ├── NotificationItem.jsx
+|  |  |  |  └── NotificationList.jsx
+|  |  |  ├── post
+|  |  |  |  ├── Caption.jsx
+|  |  |  |  ├── CommentSection.jsx
+|  |  |  |  ├── CreatePost.jsx
+|  |  |  |  ├── PostActions.jsx
+|  |  |  |  ├── PostCard.jsx
+|  |  |  |  ├── PostEditor.jsx
+|  |  |  |  ├── PostHeader.jsx
+|  |  |  |  ├── PostList.jsx
+|  |  |  |  └── PostMenu.jsx
+|  |  |  ├── profile
+|  |  |  |  ├── FollowButton.jsx
+|  |  |  |  ├── FollowList.jsx
+|  |  |  |  ├── ProfileHeader.jsx
+|  |  |  |  ├── ProfilePosts.jsx
+|  |  |  |  ├── ProfileStats.jsx
+|  |  |  |  ├── UserRow.jsx
+|  |  |  |  └── WhoToFollow.jsx
+|  |  |  └── story
+|  |  |     ├── StoryBar.jsx
+|  |  |     ├── StoryCard.jsx
+|  |  |     └── StoryViewer.jsx
+|  |  ├── context
+|  |  |  ├── AuthContext.jsx
+|  |  |  ├── LanguageContext.jsx
+|  |  |  ├── SocketContext.jsx
+|  |  |  └── ThemeContext.jsx
+|  |  ├── hooks
+|  |  |  ├── useAuth.js
+|  |  |  ├── useDebounce.js
+|  |  |  ├── useInfiniteScroll.js
+|  |  |  └── useSocket.js
+|  |  ├── i18n
+|  |  |  └── translations.js
+|  |  ├── index.css
+|  |  ├── main.jsx
+|  |  ├── pages
+|  |  |  ├── auth
+|  |  |  |  ├── ForgotPassword.jsx
+|  |  |  |  ├── Login.jsx
+|  |  |  |  ├── Register.jsx
+|  |  |  |  └── ResetPassword.jsx
+|  |  |  ├── Explore.jsx
+|  |  |  ├── Home.jsx
+|  |  |  ├── Messages.jsx
+|  |  |  ├── NotFound.jsx
+|  |  |  ├── Notifications.jsx
+|  |  |  ├── PostPage.jsx
+|  |  |  ├── Profile.jsx
+|  |  |  ├── Saved.jsx
+|  |  |  └── Settings.jsx
+|  |  ├── routes
+|  |  |  └── AppRoutes.jsx
+|  |  ├── services
+|  |  |  ├── api.js
+|  |  |  ├── authService.js
+|  |  |  ├── messageService.js
+|  |  |  ├── notificationService.js
+|  |  |  ├── postService.js
+|  |  |  ├── storyService.js
+|  |  |  ├── uploadService.js
+|  |  |  └── userService.js
+|  |  ├── store
+|  |  |  ├── authSlice.js
+|  |  |  ├── chatSlice.js
+|  |  |  ├── index.js
+|  |  |  ├── notificationSlice.js
+|  |  |  └── postSlice.js
+|  |  └── utils
+|  |     ├── caption.js
+|  |     ├── chat.js
+|  |     ├── constants.js
+|  |     ├── errorMessage.js
+|  |     ├── exploreQuery.js
+|  |     ├── formatDate.js
+|  |     ├── formatNumber.js
+|  |     ├── formatTime.js
+|  |     ├── recentSearches.js
+|  |     ├── share.js
+|  |     └── validators.js
+|  └── vite.config.js
+├── docker-compose.yml
+├── package-lock.json
+├── package.json
+├── README.md
+├── server
+|  ├── app.js
+|  ├── config
+|  |  ├── cloudinary.js
+|  |  ├── database.js
+|  |  ├── environment.js
+|  |  └── mail.js
+|  ├── controllers
+|  |  ├── authController.js
+|  |  ├── commentController.js
+|  |  ├── followController.js
+|  |  ├── messageController.js
+|  |  ├── notificationController.js
+|  |  ├── postController.js
+|  |  ├── storyController.js
+|  |  ├── uploadController.js
+|  |  └── userController.js
+|  ├── i18n
+|  |  └── messages.js
+|  ├── middleware
+|  |  ├── authMiddleware.js
+|  |  ├── errorMiddleware.js
+|  |  ├── langMiddleware.js
+|  |  ├── rateLimitMiddleware.js
+|  |  └── uploadMiddleware.js
+|  ├── models
+|  |  ├── Comment.js
+|  |  ├── Conversation.js
+|  |  ├── Follow.js
+|  |  ├── Message.js
+|  |  ├── Notification.js
+|  |  ├── Post.js
+|  |  ├── Story.js
+|  |  └── User.js
+|  ├── package.json
+|  ├── routes
+|  |  ├── authRoutes.js
+|  |  ├── commentRoutes.js
+|  |  ├── followRoutes.js
+|  |  ├── messageRoutes.js
+|  |  ├── notificationRoutes.js
+|  |  ├── postRoutes.js
+|  |  ├── storyRoutes.js
+|  |  ├── uploadRoutes.js
+|  |  └── userRoutes.js
+|  ├── scripts
+|  |  └── check-cloudinary.js
+|  ├── server.js
+|  ├── services
+|  |  ├── authService.js
+|  |  ├── messageService.js
+|  |  ├── notificationService.js
+|  |  └── recommendationService.js
+|  ├── socket
+|  |  ├── chatEvents.js
+|  |  ├── notificationEvents.js
+|  |  ├── presenceEvents.js
+|  |  └── socketServer.js
+|  ├── uploads
+|  |  └── rivvo
+|  |     └── posts
+|  |        ├── 1792315958803-716a4084bd3462ba.jpg
+|  |        ├── 1792479558115-63100b3eb5f47846.jpg
+|  |        ├── 1792479664445-1f7d01d66a65178c.png
+|  |        └── 1792480632630-0ef88c88f9311474.jpg
+|  └── utils
+|     ├── generateToken.js
+|     ├── logger.js
+|     ├── pagination.js
+|     └── validation.js
+└── tests
+   ├── client
+   ├── final-check.cjs
+   └── server
+
+directory: 3290 file: 15541 symboliclink: 2
+
+ignored: directory (66)
