@@ -21,7 +21,7 @@ const PostPage = () => {
   }, [dispatch, id]);
 
   if (!post) {
-    if (status === 'loading' || status === 'idle') return <Spinner />;
+    if (status === 'loading' || status === 'idle') return <Spinner centered className="full-page" />;
     return (
       <div className="empty-state">
         <p>{t('postMissing')}</p>

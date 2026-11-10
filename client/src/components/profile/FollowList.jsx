@@ -20,7 +20,7 @@ const FollowList = ({ username, type, onClose, onChanged }) => {
   return (
     <Modal open onClose={onClose} title={t(type)}>
       <div className="follow-list">
-        {people === null && <Spinner />}
+        {people === null && <Spinner centered />}
         {people && people.length === 0 && (
           <p className="empty-text">{type === 'followers' ? t('noFollowers') : t('noFollowing')}</p>
         )}

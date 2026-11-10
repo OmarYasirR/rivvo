@@ -34,7 +34,7 @@ const Profile = () => {
     userService.getProfile(username).then(setProfile).catch(() => {});
   }, [username]);
 
-  if (loading) return <Spinner />;
+  if (loading) return <Spinner centered className="full-page" />;
   if (!profile) return <p>{t('userNotFound')}</p>;
 
   return (

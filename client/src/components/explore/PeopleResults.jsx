@@ -16,7 +16,7 @@ const PeopleResults = ({ q }) => {
     return () => { active = false; };
   }, [q]);
 
-  if (people === null) return <Spinner />;
+  if (people === null) return <Spinner centered />;
   if (people.length === 0) return <p className="empty-text">{t('noResults')}</p>;
   return (
     <ul className="people-results">

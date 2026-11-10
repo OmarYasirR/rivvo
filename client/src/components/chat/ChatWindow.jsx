@@ -127,7 +127,7 @@ const ChatWindow = ({ conversationId, onBack }) => {
             {loadingOlder ? <Spinner size={16} /> : t('loadEarlier')}
           </button>
         )}
-        {messages === undefined && <Spinner />}
+        {messages === undefined && <Spinner centered />}
         {messages && messages.length === 0 && <p className="empty-text">{t('sayHi')}</p>}
 
         {groupByDay(messages || [], lang).map((group) => (

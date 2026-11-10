@@ -48,7 +48,7 @@ const NewMessageModal = ({ onClose, onOpened }) => {
       <div className="new-message">
         <input type="search" autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('searchPeople')} />
         {error && <p className="error">{error}</p>}
-        {people === null && <Spinner />}
+        {people === null && <Spinner centered />}
         {people && people.length === 0 && <p className="empty-text">{q.trim() ? t('noResults') : t('searchToMessage')}</p>}
         {people && people.length > 0 && (
           <ul className="new-message-list">
