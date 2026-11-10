@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';   // <-- add
 import { useDispatch } from 'react-redux';
 import postService from '../../services/postService';
 import { addComment } from '../../store/postSlice';
@@ -29,8 +30,18 @@ const CommentSection = ({ post }) => {
       <ul>
         {(post.comments || []).map((c) => (
           <li key={c._id || c.text}>
-            <Avatar src={c.user?.avatar} size={24} />
-            <strong>{c.user?.username}</strong> {c.text}
+            {c.user?.username ? (
+              <Link to={`/profile/${c.user.username}`} className="comment-author">
+                <Avatar src={c.user.avatar} size={24} />
+                <strong>{c.user.username}</strong>
+              </Link>
+            ) : (
+              <span className="comment-author">
+                <Avatar size={24} />
+                <strong>—</strong>
+              </span>
+            )}
+            <span className="comment-text">{c.text}</span>
           </li>
         ))}
       </ul>

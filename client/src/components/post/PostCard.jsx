@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';   // <-- add
 import { useDispatch } from 'react-redux';
 import PostHeader from './PostHeader';
 import PostActions from './PostActions';
@@ -11,11 +12,11 @@ import { deletePost } from '../../store/postSlice';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 
-// onDeleted: optional callback after a successful delete (e.g. leave the single-post page)
 const PostCard = ({ post, onDeleted, defaultShowComments = false }) => {
   const dispatch = useDispatch();
   const { user } = useAuth();
   const { t } = useLanguage();
+  const location = useLocation();
   const [showComments, setShowComments] = useState(defaultShowComments);
   const [editing, setEditing] = useState(false);
   const [confirming, setConfirming] = useState(false);
@@ -23,12 +24,13 @@ const PostCard = ({ post, onDeleted, defaultShowComments = false }) => {
   const [deleteError, setDeleteError] = useState('');
 
   const isOwner = Boolean(user) && String(post.user?._id || post.user) === String(user.id);
+  const onPostPage = location.pathname === `/post/${post._id}`;   // don't self-link
 
   const handleDelete = async () => {
     setDeleting(true);
     setDeleteError('');
     try {
-      await dispatch(deletePost(post._id)).unwrap(); // the card unmounts once the post leaves the list
+      await dispatch(deletePost(post._id)).unwrap();
       onDeleted?.();
     } catch (err) {
       setDeleteError(err?.message || t('errSomethingWrong'));
@@ -51,9 +53,15 @@ const PostCard = ({ post, onDeleted, defaultShowComments = false }) => {
 
       {post.images?.length > 0 && (
         <div className="post-images">
-          {post.images.map((src) => (
-            <img key={src} src={src} alt="" />
-          ))}
+          {post.images.map((src) =>
+            onPostPage ? (
+              <img key={src} src={src} alt="" />
+            ) : (
+              <Link key={src} to={`/post/${post._id}`} className="post-image-link" aria-label={t('openPost')}>
+                <img src={src} alt="" />
+              </Link>
+            )
+          )}
         </div>
       )}
 

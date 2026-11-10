@@ -524,6 +524,33 @@ label { font-size: 0.85rem; color: var(--text-muted); }
 }
 .post-actions button:hover { background: var(--surface-2); color: var(--text); }
 
+/* clickable post images (feed → post page) */
+.post-images a.post-image-link {
+  display: block;
+  line-height: 0;
+  cursor: pointer;
+}
+.post-images a.post-image-link:hover img { filter: brightness(0.97); transition: filter 0.15s; }
+
+/* comment author link */
+.comment-section li {
+  display: flex;
+  align-items: flex-start;   /* top-align avatar for multi-line comments */
+  gap: 8px;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+.comment-author {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  color: var(--text);
+  font-weight: 600;
+}
+.comment-author:hover { color: var(--color-primary); text-decoration: none; }
+.comment-text { min-width: 0; overflow-wrap: anywhere; padding-top: 3px; }
+
 .comment-section { padding: 4px 16px 16px; border-top: 1px solid var(--border); }
 .comment-section ul { display: flex; flex-direction: column; gap: 10px; padding-block: 12px; }
 .comment-section li { display: flex; align-items: center; gap: 8px; font-size: 0.92rem; }
