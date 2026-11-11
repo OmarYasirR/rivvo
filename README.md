@@ -6,7 +6,7 @@
 
 **Connect. Share. Live.**
 
-A full-stack, bilingual social platform built with the MERN stack — real-time messaging, stories, an explore feed, notifications, and a complete follower graph.
+A bilingual social network built with the MERN stack. It has real-time chat, stories, an explore feed, notifications, and a full follower system.
 
 [![Frontend](https://img.shields.io/badge/frontend-React%2018-61DAFB?logo=react&logoColor=white)](#tech-stack)
 [![Backend](https://img.shields.io/badge/backend-Node%20%2B%20Express-339933?logo=nodedotjs&logoColor=white)](#tech-stack)
@@ -21,7 +21,7 @@ A full-stack, bilingual social platform built with the MERN stack — real-time 
 
 ## Overview
 
-Rivvo is a modern social networking application available in **English** and **العربية** (with full RTL support). It ships as a monorepo containing a **React + Vite** frontend and a **Node/Express + Socket.IO** backend, both production-ready and deployable to Vercel and any Node host.
+Rivvo is a social networking app that works in both **English** and **العربية**, including full right-to-left layout. The project is a monorepo with two parts: a **React + Vite** frontend and a **Node/Express + Socket.IO** backend. You can deploy the frontend to Vercel and the backend to any Node host.
 
 ## Table of Contents
 
@@ -47,14 +47,14 @@ Rivvo is a modern social networking application available in **English** and **�
 
 ## Features
 
-### 🔐 Authentication
+### Authentication
 - Email / password registration and login with JWT
 - Secure password hashing with **bcryptjs** (cost factor 10)
 - Forgot / reset password flow via SMTP (Nodemailer)
 - Token-based session persistence (`localStorage` + `Bearer` header)
 - Rate-limited auth endpoints (100 requests / 15 minutes)
 
-### 📱 Posts & Feed
+### Posts and Feed
 - Create text and image posts (up to 10 MB per image, Cloudinary-hosted)
 - Home feed with **For You** (all posts) and **Following** tabs
 - Inline caption editing for the post owner
@@ -63,7 +63,7 @@ Rivvo is a modern social networking application available in **English** and **�
 - Comments with live per-post updates
 - Caption tokenizer: `#hashtags` link to Explore, `@mentions` link to profiles
 
-### 🧭 Explore
+### Explore
 - Full-text search across people and posts
 - Hashtag pages (`/explore?tag=vibes`)
 - **Popular** / **Latest** sorting (popularity = likes + 2 × comments)
@@ -71,13 +71,13 @@ Rivvo is a modern social networking application available in **English** and **�
 - Recent searches persisted in `localStorage`
 - Infinite-scrolling grid with skeleton loading
 
-### 📸 Stories
+### Stories
 - 24-hour ephemeral stories (auto-expire via `expiresAt`)
 - Cloudinary uploads with progress state
 - Instagram-style viewer with progress bars and auto-advance
 - View tracking (`viewers[]`) drives the "viewed" ring state
 
-### 💬 Real-time Messaging
+### Real-time Messaging
 - 1:1 conversations with live Socket.IO delivery
 - Optimistic message bubbles (pending → sent → seen)
 - Image attachments (Cloudinary) with thumbnails
@@ -87,25 +87,25 @@ Rivvo is a modern social networking application available in **English** and **�
 - Presence (online / offline / last seen)
 - Unread badges in the navbar, sidebar, mobile nav, and conversation list
 
-### 🔔 Notifications
+### Notifications
 - Like, comment, follow, and message notifications
 - Real-time delivery over Socket.IO
 - Unread count badge with `99+` cap
 - Mark-as-read on click
 
-### 👥 Social Graph
+### Social Graph
 - Follow / unfollow with instant optimistic UI
 - Followers / Following lists in a modal
 - "Who to follow" suggestions (sorted by follower count)
 - Public profiles with posts grid, stats, and counts
 
-### 🌍 Internationalization
+### Internationalization
 - English (LTR) and Arabic (RTL)
 - Full translation coverage — frontend dictionary + backend `Accept-Language`
 - Logical CSS properties (`inset-inline-end`, `margin-inline-start`) so layouts mirror correctly
 - Localized dates (`Intl.RelativeTimeFormat`) and numbers (`Intl.NumberFormat` with `notation: 'compact'`)
 
-### 🎨 Theming
+### Theming
 - Dark-first design with a light theme toggle
 - CSS variables for all design tokens
 - Persisted choice in `localStorage` (`rivvo_theme`)
@@ -380,7 +380,7 @@ EMAIL_FROM=Rivvo <no-reply@rivvo.app>
 | `SMTP_*` | ✓ | Used for password-reset emails only |
 | `EMAIL_FROM` | — | `From` header for outbound email |
 
-> ⚠️ **Never commit `.env` files.** Keep real secrets out of version control and rotate any credential that has been exposed.
+> **Heads up:** never commit your `.env` files. Keep real secrets out of version control, and rotate any credential that has ever been exposed.
 
 ### `client/.env` (production only)
 
@@ -696,7 +696,7 @@ All directional CSS uses logical properties (`inset-inline-end`, `border-inline-
 
 6. Deploy
 
-> **Critical:** `react-icons`, `socket.io-client`, and every other runtime import must be listed in `client/package.json` and committed together with `package-lock.json`. Vercel runs `npm ci` against the lockfile — anything installed locally without `--save` will not reach the build.
+> **Important:** every package the client imports (`react-icons`, `socket.io-client`, and so on) has to be listed in `client/package.json` and committed along with `package-lock.json`. Vercel runs `npm ci` against the lockfile, so anything you installed locally without `--save` won't make it into the build.
 
 ### Backend → Railway / Render / Fly.io / VPS
 
@@ -752,16 +752,16 @@ The server allows CORS from `CLIENT_URL` — already wired in `app.js` and `sock
 
 ### Uploads fail with `502 Bad Gateway`
 
-The server reached Cloudinary and Cloudinary rejected the upload. The HTTP status is masked — the real reason is in the response body (`detail` field) and in the server console (`[upload] Cloudinary error: ...`).
+This means your server reached Cloudinary, but Cloudinary turned the upload down. The HTTP status is masked, so to find the real reason, check the `detail` field in the response body or the server console (`[upload] Cloudinary error: ...`).
 
-Run the built-in diagnostic:
+Start with the built-in diagnostic:
 
 ```bash
 cd server
 npm run check:cloudinary
 ```
 
-Then match the output to the fix:
+Then match what it prints to one of these fixes:
 
 | Output | Fix |
 |---|---|
@@ -772,21 +772,21 @@ Then match the output to the fix:
 
 ### Image messages send but `attachment` is empty
 
-Older versions of `messageController.js` did not save the `attachment` field. Verify in `mongosh`:
+Older versions of `messageController.js` didn't save the `attachment` field. You can check in `mongosh`:
 
 ```js
 db.messages.find().sort({ createdAt: -1 }).limit(1)
 ```
 
-If `attachment: ""` after sending an image, re-apply the attachment save in `sendMessage`.
+If `attachment` is an empty string after you send an image, add the attachment save back into `sendMessage`.
 
 ### Messaging: `messages is not iterable`
 
-The frontend `fetchMessages` thunk expects `{ messages, hasMore }`, but an older backend returned a bare array. Fix: make `getMessages` return the paginated shape.
+The frontend `fetchMessages` thunk expects `{ messages, hasMore }`, but older backends returned a bare array. Change `getMessages` so it returns the paginated shape.
 
 ### `Router.use() requires a middleware function but got a Object`
 
-A route file is missing `module.exports = router;` at the end. Find it with:
+One of your route files is missing `module.exports = router;` at the end. This command will point you to it:
 
 ```bash
 cd server
@@ -795,19 +795,19 @@ grep -rL "module.exports = router" routes/
 
 ### Vercel build: `failed to resolve import "react-icons/io5"`
 
-`react-icons` is missing from `client/package.json`. Add it, run `npm install`, commit both `package.json` and `package-lock.json`, then redeploy.
+`react-icons` isn't listed in `client/package.json`. Add it, run `npm install`, commit both `package.json` and `package-lock.json`, and redeploy.
 
 ### Notification bell never shows a count
 
-`fetchNotifications()` must be dispatched at app level (`RealtimeListener`) — not only from `NotificationList`. Otherwise `unreadCount` stays `0` until the notifications page is opened. Also dispatch `resetNotifications()` on logout to avoid leaking the previous user's count.
+The count stays at `0` until someone opens the notifications page. Make sure `fetchNotifications()` is dispatched at the app level (in `RealtimeListener`), not only from `NotificationList`. Also dispatch `resetNotifications()` on logout so the next user doesn't see the previous user's count.
 
 ### `GET /api/posts/explore` returns 500
 
-The literal route isn't registered before `/:id`, so Express treats `"explore"` as a Mongo ObjectId. Reorder `postRoutes.js` — all literal paths first, `/:id` last.
+Express is reading `"explore"` as a Mongo ObjectId because the literal route is registered after `/:id`. Reorder `postRoutes.js` so all literal paths come first and `/:id` comes last.
 
 ### `PUT /api/messages/:id/read` returns 404
 
-The route isn't declared. Add the following to `messageRoutes.js`:
+That route hasn't been declared yet. Add this to `messageRoutes.js`:
 
 ```js
 router.put('/:conversationId/read', protect, markRead);
@@ -815,7 +815,7 @@ router.put('/:conversationId/read', protect, markRead);
 
 ### Chat UI renders unstyled
 
-`index.css` is targeting old class names (`.chat-list li`, `.message-input input`) that don't match the current JSX (`.chat-item`, `.message-input textarea`). Replace the Chat section of `index.css` with the updated styles and remove the old block entirely — the old selector `.chat-window > header` (specificity 0,1,1) beats `.chat-header` (0,1,0), causing the new styles to be silently ignored.
+`index.css` is probably still targeting old class names (`.chat-list li`, `.message-input input`) that no longer match the JSX (`.chat-item`, `.message-input textarea`). Replace the Chat section of `index.css` with the updated styles, and delete the old block completely. The old selector `.chat-window > header` (specificity 0,1,1) outranks `.chat-header` (0,1,0), so any leftovers will quietly override your new styles.
 
 ### Password reset emails aren't arriving
 
@@ -831,11 +831,11 @@ router.put('/:conversationId/read', protect, markRead);
 
 ## Contributing
 
-Contributions are welcome!
+Contributions are welcome, whether it's a bug fix, a translation, or a new feature.
 
 1. Fork the repo
 2. Create a feature branch: `git checkout -b feat/your-feature`
-3. Follow the existing patterns:
+3. Please follow the existing patterns:
    - **Frontend** — keep components pure; state goes in Redux slices or context
    - **Backend** — controllers only orchestrate; services hold business logic
    - **Errors** — always `next(err)`; the central handler localizes them
