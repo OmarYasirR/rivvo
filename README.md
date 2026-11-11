@@ -1,4 +1,4 @@
-![app logo](client\public\logo.svg)
+![applogo](client\public\logo.svg)
 
 ><div align="center">
 
